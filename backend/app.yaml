@@ -17,7 +17,11 @@ handlers:
     static_files: dist/\1
     upload: dist/.*\.(ico|png|jpg|svg|webp|css|js|map)
 
-  # Serve index.html for everything else (SPA fallback)
+  # Route API requests to the Flask application
+  - url: /api/.*
+    script: auto
+
+  # # Serve index.html for everything else (SPA fallback)
   - url: /.*
     static_files: dist/index.html
     upload: dist/index.html

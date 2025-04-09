@@ -4,8 +4,6 @@ A modern, lightweight web app for analyzing WAN uplink usage across Meraki netwo
 
 ![Dashboard](dashboard.png)
 
----
-
 ## 📚 Table of Contents
 
 - [🚀 Features](#-features)
@@ -42,15 +40,11 @@ A modern, lightweight web app for analyzing WAN uplink usage across Meraki netwo
 
 - 🌗 **Dark Mode** toggle
 
----
-
 ## ✨ Tech Stack
 
 - **Frontend**: Svelte 5 with Typescript & Vite
 - **Backend**: Flask + Meraki Python SDK
 - **Styling**: PicoCSS
-
----
 
 ## 🧠 How It Works
 
@@ -70,8 +64,6 @@ A modern, lightweight web app for analyzing WAN uplink usage across Meraki netwo
    - Data is stored in reactive state (`$state`) and passed to charts and summaries.
    - You can compare two datasets (e.g., two weeks or days).
 
----
-
 ## 🚀 Getting Started
 
 ### 1. 📦 Clone the repository
@@ -82,8 +74,6 @@ First, clone the project from GitHub:
 git clone https://github.com/benbenbenbenbenbenbenbenbenben/meraki-wan-usage.git
 cd meraki-wan-usage
 ```
-
----
 
 ## 🔧 Install Dependencies
 
@@ -98,8 +88,6 @@ This will:
 - Create a Python virtual environment in `backend/`
 - Install all Python dependencies listed in `requirements.txt`
 - Install all Node.js packages for the frontend (Svelte)
-
----
 
 ## 🧪 Running the App (Development)
 
@@ -120,8 +108,6 @@ make frontend-dev    # Starts Svelte frontend on port 5173
 
 Your frontend will proxy API requests to the Flask backend automatically.
 
----
-
 ## 🚢 Run in Production
 
 To run the backend with the latest frontend build:
@@ -132,8 +118,6 @@ make run-prod         # Start the Flask backend (serves frontend too)
 ```
 
 Make sure the `MERAKI_DASHBOARD_API_KEY` environment variable is set.
-
----
 
 ## 📄 API Notes
 
@@ -147,5 +131,3 @@ Make sure the `MERAKI_DASHBOARD_API_KEY` environment variable is set.
   "compare": [...]
 }
 ```
-
----
