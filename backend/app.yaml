@@ -1,5 +1,5 @@
 service: meraki-wan-usage
-runtime: python313
+runtime: python312
 entrypoint: gunicorn -b :$PORT server:app
 
 instance_class: F2
