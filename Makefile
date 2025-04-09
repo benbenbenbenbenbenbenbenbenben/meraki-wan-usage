@@ -20,7 +20,7 @@ setup-node-packages:
 
 setup-python-env:
 	@echo "[setup-python-env]: Setting up python environment..."
-	@cd backend && if [ -f env/bin/activate ]; then \
+	@cd backend && if [ -f venv/bin/activate ]; then \
 		echo "[setup-python-env]: Python environment already set up. Skipping..."; \
 	else \
 		python3 -m venv venv; \
