@@ -1,4 +1,4 @@
-service: meraki-wan-usage
+service: default
 runtime: python312
 entrypoint: gunicorn -b :$PORT server:app
 
