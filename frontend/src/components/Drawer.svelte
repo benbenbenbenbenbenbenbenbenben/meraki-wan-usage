@@ -79,4 +79,10 @@
     transform: translateX(0);
     overflow-y: auto;
   }
+
+  @media (max-width: 768px) {
+    .drawer {
+      width: 100%;
+    }
+  }
 </style>

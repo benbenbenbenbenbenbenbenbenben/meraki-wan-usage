@@ -4,6 +4,8 @@
   import Report from "./Report.svelte";
   import { usage } from "./usage.svelte";
 
+  let showMenu = $state(false);
+
   let isDark = $state(false);
   let theme = "";
   function toggleTheme() {
@@ -42,9 +44,9 @@
         >
       </li>
       <li>
-        <span class="vertical-separator"></span>
+        <span class="vertical-separator hide-mobile"></span>
       </li>
-      <li class="github-link">
+      <li class="github-link hide-mobile">
         <a
           href="https://github.com/benbenbenbenbenbenbenbenbenben/meraki-wan-usage"
           target="_blank"
@@ -61,7 +63,7 @@
       </li>
 
       <li>
-        <label class="theme-toggle">
+        <label class="theme-toggle hide-mobile">
           <input
             type="checkbox"
             bind:checked={isDark}
@@ -171,5 +173,11 @@
     letter-spacing: -1.5px;
     border-left: 4px solid var(--pico-primary);
     padding-left: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .hide-mobile {
+      display: none !important;
+    }
   }
 </style>
