@@ -62,10 +62,13 @@
       compareAvgUsageData: getFilteredAvgCompare(),
     }}
   />
-  <div class="grid">
+  <div
+    class="filters-row"
+    style="display: flex; align-items: center; gap: 1rem;"
+  >
     <input
       type="text"
-      placeholder="Filter by network name..."
+      placeholder="Filter Network..."
       bind:value={usage.filters.filterText}
       class="border p-2 mb-4 rounded"
     />
@@ -91,6 +94,23 @@
       <option value="sent">Sort by Sent</option>
       <option value="received">Sort by Received</option>
     </select>
+
+    <button
+      type="button"
+      class="secondary outline"
+      style="margin-left: auto;"
+      onclick={() => {
+        usage.filters = {
+          filterText: "",
+          selectedInterface: "all",
+          sortBy: "total",
+          sortDesc: true,
+          tag: "all",
+        };
+      }}
+    >
+      Reset
+    </button>
   </div>
 
   <Chart />

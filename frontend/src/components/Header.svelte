@@ -25,7 +25,9 @@
 <header>
   <nav class="container-fluid nav-bar">
     <ul class="nav-left">
-      <li><strong>Meraki WAN Usage</strong></li>
+      <li class="app-logo">
+        <strong>WAN Usage</strong>
+      </li>
     </ul>
 
     <ul class="nav-right">
@@ -36,7 +38,8 @@
         </select>
       </li>
       <li>
-        <Drawer id="report" btnName="Report"><OrgSelect /><Report /></Drawer>
+        <Drawer id="report" btnName="Run Report"><OrgSelect /><Report /></Drawer
+        >
       </li>
       <li>
         <span class="vertical-separator"></span>
@@ -159,5 +162,14 @@
     height: 1.5rem;
     background-color: var(--pico-muted-border-color);
     margin: 0 0.75rem;
+  }
+
+  .app-logo strong {
+    font-size: 1.25rem;
+    color: var(--pico-primary);
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    border-left: 4px solid var(--pico-primary);
+    padding-left: 0.5rem;
   }
 </style>

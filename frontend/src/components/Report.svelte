@@ -67,46 +67,32 @@
   let isLoading = $state(false);
   let isSuccess = $state(false);
   let progress = $state(0);
+  let showDelayMessage = $state(false);
+  let progressInterval: number;
+  let delayMessageTimeout: number;
 
   async function onRun() {
     errorMessage = "";
     isLoading = true;
     isSuccess = false;
+    showDelayMessage = false;
     progress = 10;
 
-    if (mode === "compare-days" && (!compareDate1 || !compareDate2)) {
-      errorMessage = "Please select both dates for comparison.";
-      isLoading = false;
-      return;
-    }
+    // Simulated progress increase up to 85%
+    let simulatedProgress = 10;
+    progressInterval = window.setInterval(() => {
+      if (simulatedProgress < 85) {
+        simulatedProgress += 5;
+        progress = simulatedProgress;
+      }
+    }, 1000); // every 1 second
 
-    if (mode === "single-day" && !selectedDate) {
-      errorMessage = "Please select a date.";
-      isLoading = false;
-      return;
-    }
-
-    if (mode === "week" && (!selectedWeekStart || !selectedWeekEnd)) {
-      errorMessage = "Please select the week range.";
-      isLoading = false;
-      return;
-    }
-
-    if (
-      mode === "compare-weeks" &&
-      (!compareWeek1Start ||
-        !compareWeek1End ||
-        !selectedWeekStart ||
-        !selectedWeekEnd)
-    ) {
-      errorMessage = "Please select both week ranges.";
-      isLoading = false;
-      return;
-    }
+    // Show delay message after 5 seconds
+    delayMessageTimeout = window.setTimeout(() => {
+      showDelayMessage = true;
+    }, 5000);
 
     try {
-      progress = 30;
-
       await runReport({
         mode,
         selectedDate,
@@ -120,17 +106,23 @@
         last30End: formatDate(today),
       });
 
+      clearInterval(progressInterval);
+      clearTimeout(delayMessageTimeout);
       progress = 100;
       isSuccess = true;
+
       setTimeout(() => {
         isLoading = false;
         progress = 0;
+        showDelayMessage = false;
         closeDrawer("report");
       }, 500);
     } catch (err) {
-      console.error(err);
+      clearInterval(progressInterval);
+      clearTimeout(delayMessageTimeout);
       errorMessage = `Failed to fetch report. Please try again. ${err}`;
       isLoading = false;
+      showDelayMessage = false;
       progress = 0;
     }
   }
@@ -254,6 +246,11 @@
 
   {#if isLoading}
     <progress value={progress} max="100"></progress>
+    {#if showDelayMessage}
+      <p class="dim mt-2">
+        Still working... this may take a few more seconds ⏳
+      </p>
+    {/if}
   {/if}
 </section>
 

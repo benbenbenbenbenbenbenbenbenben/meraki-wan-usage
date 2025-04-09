@@ -16,7 +16,7 @@ export const usage = $state<{
   data: [],
   selectedOrg: localStorage.getItem("selectedOrg") ?? "",
   selectedOrgName: localStorage.getItem("selectedOrgName") ?? "",
-  unit: "MB",
+  unit: "GB",
   filters: {
     filterText: "",
     selectedInterface: "all",

@@ -1,0 +1,23 @@
+service: meraki-wan-usage
+runtime: python313
+entrypoint: gunicorn -b :$PORT server:app
+
+instance_class: F2
+
+env_variables:
+  # Set this in the GCP UI or via `gcloud app deploy --update-env-vars`
+  MERAKI_DASHBOARD_API_KEY: "REPLACE_IN_GCP_CONSOLE"
+
+handlers:
+  # Serve static assets from dist
+  - url: /assets
+    static_dir: dist/assets
+
+  - url: /(.*\.(ico|png|jpg|svg|webp|css|js|map))
+    static_files: dist/\1
+    upload: dist/.*\.(ico|png|jpg|svg|webp|css|js|map)
+
+  # Serve index.html for everything else (SPA fallback)
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
