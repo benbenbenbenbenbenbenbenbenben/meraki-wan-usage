@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import Chart from "./lib/Chart.svelte";
-  import Header from "./lib/Header.svelte";
-  import Footer from "./lib/Footer.svelte";
-  import MetricCards from "./lib/MetricCards.svelte";
-  import Table from "./lib/Table.svelte";
-  import KeyModel from "./lib/KeyModel.svelte";
+  import Chart from "./components/Chart.svelte";
+  import Header from "./components/Header.svelte";
+  import Footer from "./components/Footer.svelte";
+  import MetricCards from "./components/MetricCards.svelte";
+  import Table from "./components/Table.svelte";
+  import KeyModel from "./components/KeyModel.svelte";
 
   import {
     usage,
@@ -17,7 +17,7 @@
     getFilteredTotalCompare,
     getAvailableTags,
     getInterfaceSpread,
-  } from "./lib/usage.svelte";
+  } from "./components/usage.svelte";
 
   $effect(() => {
     if (usage.selectedOrg) {
