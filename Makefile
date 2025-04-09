@@ -10,7 +10,7 @@ install: setup-python-env setup-python-packages setup-node-packages
 
 setup-python-packages:
 	@echo "[setup-python-packages]: Installing python packages..."
-	@cd backend && source env/bin/activate && pip install -r requirements.txt
+	@cd backend && source venv/bin/activate && pip install -r requirements.txt
 	@echo "[setup-python-packages]: Done."
 
 setup-node-packages:
