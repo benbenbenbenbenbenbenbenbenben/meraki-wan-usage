@@ -23,7 +23,7 @@ setup-python-env:
 	@cd backend && if [ -f env/bin/activate ]; then \
 		echo "[setup-python-env]: Python environment already set up. Skipping..."; \
 	else \
-		python3 -m venv env; \
+		python3 -m venv venv; \
 		echo "[setup-python-env]: Done."; \
 	fi
 
