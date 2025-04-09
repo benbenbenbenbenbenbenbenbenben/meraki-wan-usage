@@ -2,11 +2,12 @@
   import { onMount } from "svelte";
   import Chart from "./lib/Chart.svelte";
   import Header from "./lib/Header.svelte";
+  import Footer from "./lib/Footer.svelte";
   import MetricCards from "./lib/MetricCards.svelte";
   import Table from "./lib/Table.svelte";
+  import KeyModel from "./lib/KeyModel.svelte";
 
   import {
-    fetchUplinks,
     usage,
     reportParams,
     getFilterData,
@@ -21,7 +22,6 @@
   $effect(() => {
     if (usage.selectedOrg) {
       localStorage.setItem("selectedOrg", usage.selectedOrg);
-      fetchUplinks(usage.selectedOrg);
     }
   });
 
@@ -35,16 +35,19 @@
     <h2>{usage.selectedOrgName}</h2>
 
     <p>
-      {#if reportParams.report.mode === "single-day"}
+      {#if reportParams.report?.mode === "single-day"}
         {reportParams.report.data.date}
-      {:else if reportParams.report.mode === "billing-month"}
-        {reportParams.report.data.month}
+      {:else if reportParams.report.mode === "month" || reportParams.report.mode === "week"}
+        {reportParams.report.data.start} — {reportParams.report.data.end}
       {:else if reportParams.report.mode === "compare-days"}
-        {reportParams.report.data.dates[0]} — {reportParams.report.data
+        {reportParams.report.data.dates[0]} vs {reportParams.report.data
           .dates[1]}
-      {:else if reportParams.report.mode === "compare-months"}
-        {reportParams.report.data.months[0]} — {reportParams.report.data
-          .months[1]}
+      {:else if reportParams.report.mode === "compare-weeks"}
+        {reportParams.report.data.weeks[0].start} — {reportParams.report.data
+          .weeks[0].end}
+        vs
+        {reportParams.report.data.weeks[1].start} — {reportParams.report.data
+          .weeks[1].end}
       {/if}
     </p>
   </hgroup>
@@ -93,4 +96,6 @@
   <Chart />
 
   <Table data={getFilterData()} />
+  <KeyModel />
 </main>
+<Footer />
