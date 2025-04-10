@@ -3,10 +3,42 @@ export FLASK_APP=backend/server.py
 FLASK_PORT=5002
 SVELTE_PORT=5173
 
-.PHONY: install setup-python-packages setup-node-packages backend-dev frontend-dev frontend-build run-prod 
+.PHONY: install check-dependencies setup-python-packages setup-node-packages backend-dev frontend-dev frontend-build run-prod 
 
-install: setup-python-env setup-python-packages setup-node-packages
+install: check-dependencies setup-python-env setup-python-packages setup-node-packages
 	@echo "[install]: All prerequisites installed."
+
+check-dependencies:
+	@echo "[check-dependencies]: Verifying required dependencies..."
+
+	@# --- Check Python version ---
+	@PYTHON_VERSION=$$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"); \
+	REQUIRED_PYTHON="3.12"; \
+	if [ "$$(echo $$PYTHON_VERSION | awk -F. '{ printf("%d%02d", $$1, $$2) }')" -lt "$$(echo $$REQUIRED_PYTHON | awk -F. '{ printf("%d%02d", $$1, $$2) }')" ]; then \
+		echo "[check-dependencies]: Python 3.12+ required. Found $$PYTHON_VERSION."; \
+		exit 1; \
+	else \
+		echo "[check-dependencies]: Python version $$PYTHON_VERSION OK."; \
+	fi
+
+	@# --- Check Node.js ---
+	@if ! command -v node >/dev/null 2>&1; then \
+		echo "[check-dependencies]: Node.js is not installed. Please install it."; \
+		exit 1; \
+	else \
+		echo "[check-dependencies]: Node.js found."; \
+	fi
+
+	@# --- Check npm ---
+	@if ! command -v npm >/dev/null 2>&1; then \
+		echo "[check-dependencies]: npm is not installed. Please install it."; \
+		exit 1; \
+	else \
+		echo "[check-dependencies]: npm found."; \
+	fi
+
+	@echo "[check-dependencies]: All dependencies verified."
+
 
 setup-python-packages:
 	@echo "[setup-python-packages]: Installing python packages..."

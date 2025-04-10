@@ -8,6 +8,7 @@ A modern, lightweight web app for analyzing WAN uplink usage across Meraki netwo
 
 - [🚀 Features](#-features)
 - [✨ Tech Stack](#-tech-stack)
+- [🧰 Dependencies](#-dependencies)
 - [🧠 How It Works](#-how-it-works)
 - [🚀 Getting Started](#-getting-started)
   - [📦 Clone the repository](#-clone-the-repository)
@@ -45,6 +46,14 @@ A modern, lightweight web app for analyzing WAN uplink usage across Meraki netwo
 - **Frontend**: Svelte 5 with Typescript & Vite
 - **Backend**: Flask + Meraki Python SDK
 - **Styling**: PicoCSS
+
+## 🧰 Dependencies
+
+Make sure the following are installed **before** running or setting up the app:
+
+- **Python ≥ 3.12**
+- **Node.js ≥ 18**
+- **npm ≥ 9** (bundled with Node)
 
 ## 🧠 How It Works
 

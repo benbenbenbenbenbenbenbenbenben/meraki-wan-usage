@@ -94,3 +94,8 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+
+# allow backend/dist and its contents
+!backend/dist/
+!backend/dist/**

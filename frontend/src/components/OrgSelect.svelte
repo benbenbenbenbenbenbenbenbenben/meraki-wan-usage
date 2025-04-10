@@ -16,8 +16,8 @@
         (org: { id: string }) => org.id === saved
       );
 
-      usage.selectedOrg = isValid ? saved : organizations[0].id;
-      usage.selectedOrgName = organizations[0].name;
+      usage.selectedOrg = isValid ? saved : "660903245316620328";
+      usage.selectedOrgName = "Cisco Mini Demo 7";
     } catch (e) {
       error = "Failed to load organizations.";
     }
